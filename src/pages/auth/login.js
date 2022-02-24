@@ -1,3 +1,7 @@
+import toastr from "toastr";
+import { signin } from "../../api/user";
+import "toastr/build/toastr.min.css";
+
 const Login = {
     render() {
         return /* html */ `
@@ -20,31 +24,35 @@ const Login = {
                       d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
                   </svg>
                 </div>
-                <h1 class="mb-4 text-2xl font-bold text-center text-gray-700">
-                  Sign in
-                </h1>
-                <div>
-                <div class="mt-4">
-                  <label class="block text-sm">
-                    Email
-                  </label>
-                  <input type="email"
-                    class="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                    placeholder="Email Address" />
-                </div>
-                <div>
-                  <label class="block mt-4 text-sm">
-                    Password
-                  </label>
-                  <input
-                    class="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                    placeholder="Password" type="password" />
-                </div>
-                <button
-                  class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
-                  href="#">
-                  Sign in
-                </button>
+
+                <form id="formSignin">
+                    <h1 class="mb-4 text-2xl font-bold text-center text-gray-700">
+                      Sign in
+                    </h1>
+                    <div>
+                    <div class="mt-4">
+                      <label class="block text-sm">
+                        Email
+                      </label>
+                      <input type="email" id = "email"
+                        class="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                        placeholder="Email Address" />
+                    </div>
+                    <div>
+                      <label class="block mt-4 text-sm">
+                        Password
+                      </label>
+                      <input id="password"
+                        class="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                        placeholder="Password" type="password" />
+                    </div>
+                    <button
+                      class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
+                      href="#">
+                      Sign in
+                    </button>
+                </form>
+                
   
                 <div class="mt-4 text-center">
                   <p class="text-sm">Don't have an account yet? <a href="/auth/signup"
@@ -56,6 +64,26 @@ const Login = {
         </div>
       </div>
         `;
+    },
+    afterRender() {
+        const formSignin = document.querySelector("#formSignin");
+        formSignin.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            try {
+                const { data } = await signin({
+                    email: document.querySelector("#email").value,
+                    password: document.querySelector("#password").value,
+                });
+                if (data) {
+                    toastr.success("Đăng nhập thành công , chuyển trang sau 2 giây");
+                    setTimeout(() => {
+                        document.location.href = "/";
+                    }, 2000);
+                }
+            } catch (error) {
+                toastr.error(error.response.data);
+            }
+        });
     },
 };
 export default Login;

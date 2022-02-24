@@ -5,7 +5,7 @@ const Header = {
         <div class="header">
             
             <div class="logo">
-                    <a href="index.html"><img src="images/store_1587022637_735.jpg" alt=""  title="logo" width="100px" /></a>
+                    <a href="/"><img src="https://123website.com.vn/wp-content/uploads/2016/03/logo123website.png" alt=""  title="logo" width="100px" /></a>
             </div>
             <div class="nav-right">
                 <ul class="nav">
