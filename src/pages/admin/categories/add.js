@@ -1,6 +1,6 @@
-import { addCate } from "../../../../api/categories";
+import { addCate } from "../../../api/categories";
 
-import NavAdmin from "../../../../components/NavAdmin";
+import NavAdmin from "../../../components/NavAdmin";
 
 const AddCate = {
     async render() {

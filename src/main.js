@@ -3,9 +3,9 @@ import DetailProduct from "./components/detailProduct";
 import AboutPage from "./pages/about";
 import Auth from "./pages/admin/accout";
 
-import Categories from "./pages/admin/accout/categories";
-import AddCate from "./pages/admin/accout/categories/add";
-import EditCate from "./pages/admin/accout/categories/edit";
+import Categories from "./pages/admin/categories";
+import AddCate from "./pages/admin/categories/add";
+import EditCate from "./pages/admin/categories/edit";
 import DastBoard from "./pages/admin/dashboard";
 import News from "./pages/admin/news";
 import AddNews from "./pages/admin/news/add";
