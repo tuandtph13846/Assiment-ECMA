@@ -54,12 +54,17 @@
       "email": "dothanhtuana6ntt2020@gmail.com",
       "password": "$2a$10$C.2r8.Ja4RH6FZKZxHOqBeqyS8nPi6CqC4KiS3ww/8I7pxFKrHEOK",
       "id": 1
+    },
+    {
+      "email": "tuandt@gmail.com",
+      "password": "$2a$10$aBsxsOVug/kcBESzsLLtcOwSlwxdzJM4KNivwd98eISEQ42v5HHSS",
+      "id": 2
     }
   ],
   "categories": [
     {
-      "name": "điện thoại",
-      "id": "1"
+      "id": "1",
+      "name": "danh muc"
     },
     {
       "name": "helo",
@@ -75,13 +80,6 @@
     }
   ],
   "product": [
-    {
-      "price": "30990000",
-      "title": "Samsung Galaxy S22 Ultra",
-      "img": "http://res.cloudinary.com/ecommercer2021/image/upload/v1645521246/ntytovd7rmdkmekkw4ro.webp",
-      "desc": "Đúng như theo các đồn đoán trước đó, mẫu flagship mới của Samsung được ra mắt với tên gọi là Galaxy S22 Ultra. Mẫu điện thoại cao cấp đến từ Samsung này có nhiều thay đổi trong thiết kế và cấu hình.",
-      "id": 3
-    },
     {
       "price": "30990000",
       "title": "Samsung Galaxy S22 Ultra",

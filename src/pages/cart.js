@@ -1,5 +1,7 @@
 import Footer from "../components/footer";
 import Header from "../components/header";
+import { reRender } from "../utils";
+import { decreaseQuantity, increaseQuantity, removeItemInCart } from "../utils/cart";
 
 const Cart = {
     render() {
@@ -26,26 +28,29 @@ const Cart = {
                                     <tr>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tên sản phẩm</th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Giá sản phẩm</th>
-                                        
-                                        
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
 
-                                            ${cart.map((index) => /* html */`
+                                            ${cart.map((item) => /* html */`
                                                     <tr>
                                                         
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                        <div class="text-sm text-gray-900">${index.title}</div>
+                                                        <div class="text-sm text-gray-900">${item.title}</div>
                                                         
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                        <div class="text-sm text-gray-900">${index.price}</div>
+                                                        <div class="text-sm text-gray-900">${item.price}</div>
                                                         
                                                         </td>
-                                                        
+                                                        <td>
+                                                            <button data-id="${item.id}" class="btn btn-increase">+</button>
+                                                            <button data-id="${item.id}" class="btn btn-decrease">-</button>
+                                                        </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                            <button data-id="${index.id}" class="btn bg-red-500 text-white inline-block py-3 px-5 rounded">Delete</button>
+                                                            <button data-id="${item.id}" class="btn bg-red-500 text-white inline-block py-3 px-5 rounded">Delete</button>
                                                         </td>
                                                     </tr>
                                             `).join("")}
@@ -67,6 +72,25 @@ const Cart = {
                     </main>
             ${Footer.render()}
         `;
+    },
+    afterRender() {
+        const btns = document.querySelectorAll(".btn");
+        btns.forEach((button) => {
+            button.addEventListener("click", () => {
+                const { id } = button.dataset;
+                if (button.classList.contains("btn-increase")) {
+                    increaseQuantity(id);
+                } else if (button.classList.contains("btn-decrease")) {
+                    decreaseQuantity(id, () => {
+                        reRender(Cart, "#app");
+                    });
+                } else {
+                    removeItemInCart(id, () => {
+                        reRender(Cart, "#app");
+                    });
+                }
+            });
+        });
     },
 };
 export default Cart;
