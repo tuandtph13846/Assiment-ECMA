@@ -7,8 +7,10 @@ const HomePage = {
     async render() {
         return /* html */`
         ${Header.render()}
-
-            ${Banner.render()}
+            <div id= "header">
+                ${Banner.render()}
+            </div>
+                
 
                 <div class="content">
                     ${await NewList.render()}
@@ -16,6 +18,10 @@ const HomePage = {
         
         ${Footer.render()}
         `;
+    },
+    afterRender() {
+        Header.afterRender();
+        Banner.afterRender();
     },
 };
 export default HomePage;

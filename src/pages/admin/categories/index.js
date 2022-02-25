@@ -99,7 +99,7 @@ const Categories = {
             btn.addEventListener("click", () => {
                 const confirm = window.confirm("Bạn có chắc chắn muốn xóa không?");
                 if (confirm) {
-                    axios.delete(`http://localhost:3000/categories/${id}`);
+                    axios.delete(`http://localhost:3001/categories/${id}`);
                 }
             });
         });

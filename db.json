@@ -51,34 +51,9 @@
   ],
   "users": [
     {
-      "id": "1",
-      "email": "e@gmail.com",
-      "password": "1234"
-    },
-    {
-      "email": "tuandtph13846@fpt.edu.vn",
-      "password": "123",
-      "id": "V7utYpg"
-    },
-    {
-      "email": "e@gmail.com",
-      "password": "1234",
-      "id": "31M1umH"
-    },
-    {
-      "email": "e@gmail.com",
-      "password": "1234",
-      "id": "5wnNrNe"
-    },
-    {
-      "email": "q@gmail.com",
-      "password": "123",
-      "id": "v9PryVA"
-    },
-    {
-      "email": "q@gmail.com",
-      "password": "123",
-      "id": "dz-BRa7"
+      "email": "dothanhtuana6ntt2020@gmail.com",
+      "password": "$2a$10$C.2r8.Ja4RH6FZKZxHOqBeqyS8nPi6CqC4KiS3ww/8I7pxFKrHEOK",
+      "id": 1
     }
   ],
   "categories": [

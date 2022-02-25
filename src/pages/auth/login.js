@@ -75,7 +75,10 @@ const Login = {
                     password: document.querySelector("#password").value,
                 });
                 if (data) {
-                    toastr.success("Đăng nhập thành công , chuyển trang sau 2 giây");
+                    console.log(data.user);
+                    // Lưu thông tin user vào localStorage
+                    localStorage.setItem("user", JSON.stringify(data.user));
+                    toastr.success("Đăng nhập thành công, chuyển trang sau 2s");
                     setTimeout(() => {
                         document.location.href = "/";
                     }, 2000);

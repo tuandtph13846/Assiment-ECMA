@@ -115,7 +115,7 @@ const Product = {
             btn.addEventListener("click", () => {
                 const confirm = window.confirm("Bạn có chắc chắn muốn xóa không?");
                 if (confirm) {
-                    axios.delete(`http://localhost:3000/product/${id}`);
+                    axios.delete(`http://localhost:3001/product/${id}`);
                 }
             });
         });

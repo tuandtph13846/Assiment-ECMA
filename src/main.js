@@ -15,6 +15,7 @@ import AddProduct from "./pages/admin/products/add";
 import EditProduct from "./pages/admin/products/edit";
 import Login from "./pages/auth/login";
 import Signup from "./pages/auth/signup";
+import Cart from "./pages/cart";
 import HomePage from "./pages/home";
 import ProductPage from "./pages/products";
 
@@ -24,6 +25,18 @@ const print = async (content, id) => {
     document.getElementById("app").innerHTML = await content.render(id);
     if (content.afterRender) await content.afterRender(id);
 };
+router.on("/admin/*", () => {}, {
+    before: (done) => {
+        if (localStorage.getItem("user")) {
+            const userId = JSON.parse(localStorage.getItem("user")).id;
+            if (userId === 1) {
+                done();
+            } else {
+                document.location.href = "/";
+            }
+        }
+    },
+});
 router.on({
     "/": () => {
         print(HomePage);
@@ -75,6 +88,9 @@ router.on({
     },
     "/product/:id": ({ data }) => {
         print(DetailProduct, data.id);
+    },
+    "/cart": () => {
+        print(Cart);
     },
 });
 router.resolve();

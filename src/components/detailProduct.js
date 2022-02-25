@@ -1,7 +1,10 @@
+import toastr from "toastr";
 import { getSP } from "../api/product";
 // import dataduct from "../pages/admin/dataducts";
 import Footer from "./footer";
 import Header from "./header";
+import "toastr/build/toastr.min.css";
+import { addToCart } from "../utils/cart";
 
 const Detaildataduct = {
     // const found = dataduct.find((element) => element.id === "1");
@@ -21,7 +24,8 @@ const Detaildataduct = {
                                     <h4>${data.title}</h4>
                                 <div class="cart-b">
                                     <button class="left rs">${data.price} VNĐ</button>
-                                    <div class="btn right"><a href="details.html">Add to Cart</a></div>
+                                    <input type="number" id="inputValue" class="border border-black"/>
+                                    <div class="btn right" data-id="${data.id}" id="btnAddToCart">Add to Cart</div>
                                     <div class="clear"></div>
                                 </div>
                                 <h5>100 items in stock</h5>
@@ -36,6 +40,20 @@ const Detaildataduct = {
                 
                 ${Footer.render}
                 `;
+    },
+    afterRender() {
+        const btnAddToCart = document.querySelector("#btnAddToCart");
+        const { id } = btnAddToCart.dataset;
+        const inputValue = document.querySelector("#inputValue");
+
+        btnAddToCart.addEventListener("click", async () => {
+            // console.log(inputValue.value)
+            const { data } = await getSP(id);
+            console.log(data);
+            addToCart({ ...data, quantity: inputValue.value ? inputValue.value : 1 }, () => {
+                toastr.success(`Thêm sản phẩm ${data.name} vào giỏ hàng thành công!`);
+            });
+        });
     },
 };
 export default Detaildataduct;

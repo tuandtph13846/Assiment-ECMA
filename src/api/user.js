@@ -1,11 +1,11 @@
 import instance from "./config";
 
 export const signup = (user) => {
-    const url = `/users`;
+    const url = `/signup`;
     return instance.post(url, user);
 };
 export const signin = (user) => {
-    const url = `/users`;
+    const url = `/signin`;
     return instance.post(url, user);
 };
 export const getAllAcc = () => {

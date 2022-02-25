@@ -1,3 +1,7 @@
+import toastr from "toastr";
+import { reRender } from "../utils";
+import "toastr/build/toastr.min.css";
+
 const Header = {
     render() {
         return /* html */ `
@@ -9,13 +13,21 @@ const Header = {
             </div>
             <div class="nav-right">
                 <ul class="nav">
-                    <li class="active"><a href="/">Trang chủ</a></li>
+                    <li class="active "><a href="/">Trang chủ</a></li>
                     <li><a href="/about">Giới thiệu</a></li>
                     <li><a href="/product">Sản phẩm</a></li>
                     <li><a href="contact.html">Phản hồi</a></li>
                     <li><a href="/auth/signup">Đăng kí</a></li>
                     <li><a href="/auth/login">Đăng nhập</a></li>
-                    <li><a href="#">Thanh Toán</a></li>
+                    <li><a href="/cart">Giỏ hàng</a></li>
+                    ${localStorage.getItem("user") ? /* html */`
+                        <li class=""><a href="/" id="email"></a></li>
+                        <li class=""><a href="/" id="logout">Logout</a></li>
+                    ` : ""}
+                        
+                </ul>
+                <ul class="">
+                    
                 </ul>
             </div>
             <div class="clear"></div>
@@ -42,6 +54,20 @@ const Header = {
         <div class="clear"></div>
     </div>
         `;
+    },
+    afterRender() {
+        const email = document.querySelector("#email");
+        const logout = document.querySelector("#logout");
+        if (email) {
+            email.innerHTML = JSON.parse(localStorage.getItem("user")).email;
+        }
+        if (logout) {
+            logout.addEventListener("click", () => {
+                localStorage.removeItem("user");
+                reRender(Header, "#header");
+                toastr.success("Logout thành công");
+            });
+        }
     },
 };
 export default Header;

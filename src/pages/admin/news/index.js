@@ -104,7 +104,7 @@ const News = {
             btn.addEventListener("click", () => {
                 const confirm = window.confirm("Bạn có chắc chắn muốn xóa không?");
                 if (confirm) {
-                    axios.delete(`http://localhost:3000/posts/${id}`);
+                    axios.delete(`http://localhost:3001/posts/${id}`);
                 }
             });
         });
