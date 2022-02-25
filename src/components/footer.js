@@ -2,7 +2,7 @@ const Footer = {
     render() {
         return /* html */ `
             <div class="footer">
-        <div class="section group">
+            <div class="section group">
             <div class="col_1_of_4 span_1_of_4">
                 <h2>TÀi khoản của tôi</h2>
                 <ul class="nav1">
