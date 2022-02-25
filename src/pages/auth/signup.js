@@ -1,10 +1,13 @@
 import toastr from "toastr";
 import { signup } from "../../api/user";
 import "toastr/build/toastr.min.css";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
 
 const Signup = {
     render() {
         return /* html */`
+        ${Header.render()}
         <div class="flex items-center min-h-screen bg-gray-50">
         <div class="flex-1 h-full max-w-4xl mx-auto bg-white rounded-lg shadow-xl">
           <div class="flex flex-col md:flex-row">
@@ -63,6 +66,7 @@ const Signup = {
           </div>
         </div>
       </div>
+      ${Footer.render()}
         `;
     },
 
